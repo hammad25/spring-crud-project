@@ -1,0 +1,332 @@
+openapi: 3.0.1
+info:
+  description: "API for managing students, courses, and enrollments"
+  title: School API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /students:
+    get:
+      operationId: getAllStudents
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/StudentEntity'
+                type: array
+          description: Successful operation
+      summary: Get all students
+      x-accepts:
+      - application/json
+    post:
+      operationId: createStudent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentEntity'
+        required: true
+      responses:
+        "201":
+          description: StudentEntity created
+      summary: Create a new student
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /students/{id}:
+    delete:
+      operationId: deleteStudent
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: StudentEntity deleted
+      summary: Delete student
+      x-accepts:
+      - application/json
+    get:
+      operationId: getStudentById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentEntity'
+          description: Successful operation
+        "404":
+          description: StudentEntity not found
+      summary: Get student by ID
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateStudent
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentEntity'
+        required: true
+      responses:
+        "200":
+          description: StudentEntity updated
+      summary: Update student
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /courses:
+    get:
+      operationId: getAllCourses
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CourseEntity'
+                type: array
+          description: Successful operation
+      summary: Get all courses
+      x-accepts:
+      - application/json
+    post:
+      operationId: createCourse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseEntity'
+        required: true
+      responses:
+        "201":
+          description: CourseEntity created
+      summary: Create a new course
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /courses/{id}:
+    delete:
+      operationId: deleteCourse
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: CourseEntity deleted
+      summary: Delete course
+      x-accepts:
+      - application/json
+    get:
+      operationId: getCourseById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseEntity'
+          description: Successful operation
+        "404":
+          description: CourseEntity not found
+      summary: Get course by ID
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateCourse
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseEntity'
+        required: true
+      responses:
+        "200":
+          description: CourseEntity updated
+      summary: Update course
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /enrollments:
+    get:
+      operationId: getAllEnrollments
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/EnrollmentEntity'
+                type: array
+          description: Successful operation
+      summary: Get all enrollments
+      x-accepts:
+      - application/json
+    post:
+      operationId: createEnrollment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentEntity'
+        required: true
+      responses:
+        "201":
+          description: EnrollmentEntity created
+      summary: Create a new enrollment
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /enrollments/{id}:
+    delete:
+      operationId: deleteEnrollment
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: EnrollmentEntity deleted
+      summary: Delete enrollment
+      x-accepts:
+      - application/json
+    get:
+      operationId: getEnrollmentById
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentEntity'
+          description: Successful operation
+        "404":
+          description: EnrollmentEntity not found
+      summary: Get enrollment by ID
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateEnrollment
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentEntity'
+        required: true
+      responses:
+        "200":
+          description: EnrollmentEntity updated
+      summary: Update enrollment
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    Student:
+      example:
+        lastName: lastName
+        firstMidName: firstMidName
+        enrollmentDate: 2000-01-23
+        id: 0
+      properties:
+        id:
+          type: integer
+        lastName:
+          type: string
+        firstMidName:
+          type: string
+        enrollmentDate:
+          format: date
+          type: string
+      type: object
+    Course:
+      example:
+        credits: 6
+        title: title
+        courseId: 0
+      properties:
+        courseId:
+          type: integer
+        title:
+          type: string
+        credits:
+          type: integer
+      type: object
+    Enrollment:
+      example:
+        studentId: 5
+        enrollmentId: 0
+        grade: 6
+        courseId: 1
+      properties:
+        enrollmentId:
+          type: integer
+        grade:
+          type: integer
+        courseId:
+          type: integer
+        studentId:
+          type: integer
+      type: object
