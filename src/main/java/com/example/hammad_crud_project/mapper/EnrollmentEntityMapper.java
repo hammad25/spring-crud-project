@@ -8,7 +8,7 @@ import org.openapitools.model.Enrollment;
 
 @Mapper (componentModel = "spring")
 public interface EnrollmentEntityMapper {
-    @Mapping(source = "id", target = "studentEntity.id")
-    @Mapping(source = "courseId", target = "courseEntity.courseId")
+    @Mapping(source = "enrollmentId", target = "enrollmentId")
+    @Mapping(source = "grade", target = "grade")
     EnrollmentEntity map(Enrollment enrollment);
 }

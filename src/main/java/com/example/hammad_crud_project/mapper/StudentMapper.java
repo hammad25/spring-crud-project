@@ -11,7 +11,7 @@ public interface StudentMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "lastName", source = "lastName")
     @Mapping(target = "firstMidName", source = "firstMidName")
-    @Mapping(target = "enrollmentDate", source = "enrollmentDate")
+    @Mapping(target = "enrollmentDate", ignore = true) /*source = "enrollmentDate"*/
     Student map(StudentEntity studentEntity);
 
 }

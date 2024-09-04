@@ -1,10 +1,5 @@
 package com.example.hammad_crud_project.controller;
 
-import com.example.hammad_crud_project.entity.CourseEntity;
-import com.example.hammad_crud_project.entity.EnrollmentEntity;
-import com.example.hammad_crud_project.entity.StudentEntity;
-import com.example.hammad_crud_project.mapper.EnrollmentEntityMapper;
-import com.example.hammad_crud_project.mapper.EnrollmentMapper;
 import com.example.hammad_crud_project.service.CourseService;
 import com.example.hammad_crud_project.service.EnrollmentService;
 import com.example.hammad_crud_project.service.StudentService;
@@ -17,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -25,7 +19,7 @@ import java.util.Optional;
 public class EnrollmentController implements EnrollmentsApi {
 
     @Autowired
-    private EnrollmentService enrolmentService;
+    private EnrollmentService enrollmentService;
 
     @Autowired
     private StudentService studentService;
@@ -37,46 +31,32 @@ public class EnrollmentController implements EnrollmentsApi {
 
     @Override
     public ResponseEntity<Void> createEnrollment(Enrollment enrollment) {
-
-//        Optional<StudentEntity> studentEntity = studentService.getStudentById(enrollment.getStudentId());
-//        Optional<CourseEntity> courseEntity = courseService.getCourseById(enrollment.getCourseId());
-//
-//        if (!studentEntity.isPresent() || !courseEntity.isPresent()) {
-//            return ResponseEntity.status(404).build();
-//        }
-//
-//        EnrollmentEntity enrollmentEntity = enrollmentEntityMapper.map(enrollment);
-//        enrollmentEntity.setStudentEntity(studentEntity.get());
-//        enrollmentEntity.setCourseEntity(courseEntity.get());
-//        enrolmentService.saveEnrollment(enrollmentEntity);
-//        return ResponseEntity.status(201).build();
-
-        enrolmentService.saveEnrollment(enrollment);
+        enrollmentService.saveEnrollment(enrollment);
         return ResponseEntity.status(201).build();
 
     }
 
     @Override
     public ResponseEntity<Void> deleteEnrollment(Integer id) {
-        enrolmentService.deleteById(id);
+        enrollmentService.deleteById(id);
         return ResponseEntity.status(204).build();
     }
 
     @Override
     public ResponseEntity<List<Enrollment>> getAllEnrollments() {
-        var allEnrollments = enrolmentService.getAllEnrollments();
+        var allEnrollments = enrollmentService.getAllEnrollments();
         return ResponseEntity.ok(allEnrollments);
     }
 
     @Override
     public ResponseEntity<Enrollment> getEnrollmentById(Integer id) {
-        var enrollmentById = enrolmentService.getEnrollmentById(id);
+        var enrollmentById = enrollmentService.getEnrollmentById(id);
         return ResponseEntity.ok(enrollmentById);
     }
 
     @Override
     public ResponseEntity<Void> updateEnrollment(Integer id, Enrollment enrollment) {
-        var updatedEnrollment = enrolmentService.updateEnrollment(id, enrollment);
+        var updatedEnrollment = enrollmentService.updateEnrollment(id, enrollment);
         if(updatedEnrollment){
             return ResponseEntity.status(204).build();
         }
